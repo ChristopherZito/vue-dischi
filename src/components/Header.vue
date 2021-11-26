@@ -1,7 +1,7 @@
 <template>
   <div id="container">
       <div>
-        <!-- <img src="" alt="Logo Spotify"> -->
+        <i class="fab fa-spotify"></i>
       </div>
   </div>
 </template>
@@ -23,8 +23,13 @@ export default {
     div {
         width: 100px;
         /* debug */
-        height: 100px;
-        background-color: #1ed05d;
+        /* height: 100px; */
+        /* background-color: #1ed05d; */
+
+        i {
+            color: green !important;
+            font-size: 50px;
+        }
     }
 }
 </style>

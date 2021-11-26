@@ -10,6 +10,7 @@
 </template>
 
 <script>
+
 import Header from './components/Header.vue'
 import Mainbody from './components/Mainbody.vue'
 
