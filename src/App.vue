@@ -32,6 +32,7 @@ export default {
 
 main {
   background-color: #1e2d3b;
+  height: 93vh;
   /* debug */
   /* height: 500px; */
 }

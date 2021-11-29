@@ -1,8 +1,9 @@
 <template>
+<section>
+    <div id="ricerca">
+        <Search @genere="searchType"/>
+    </div>
     <div id="container">
-        <div>
-            <Search @genere="searchType"/>
-        </div>
         <div id="load" v-if="loading === false">
             Loading...
         </div>
@@ -11,6 +12,7 @@
         v-for="album, i in newAlbum" :key="i"
         :element="album"/>
     </div>
+</section>
 </template>
 
 <script>
@@ -66,11 +68,16 @@ methods: {
 </script>
 
 <style scoped lang="scss">
+#ricerca {
+    width: 60%;
+    margin: auto;
+    padding: 10px;
+}
+
 #container {
     width: 60%;
-    height: 1000px;
     margin: 0 auto;
-    padding: 50px 0;
+    padding: 50px 0 0;
 
     display: flex;
     flex-wrap: wrap;

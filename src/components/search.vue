@@ -1,12 +1,15 @@
 <template>
 <div>
     <select v-model="type" @change="$emit(`genere`, type)">
-        <option disabled value="">select one genre</option>
+        <option disabled value="">seleziona un genere</option>
         <option>Rock</option>
         <option>Pop</option>
         <option>Jazz</option>
         <option>Metal</option>
     </select>
+    <button @click="reset">
+        Reset search
+    </button>
 </div>
 </template>
 
@@ -18,9 +21,25 @@ export default {
           type: "",
       }
   },
+  methods: {
+      reset() {
+        this.type = "";
+        this.$emit(`genere`, this.type)
+      }
+  }
 }
 </script>
 
 <style scoped lang="scss">
-
+select {
+    padding: 10px;
+    background-color: purple;
+    color: #fff;
+}
+button {
+    padding: 10px;
+    margin-left: 20px;
+    background-color: purple;
+    color: #fff;
+}
 </style>
