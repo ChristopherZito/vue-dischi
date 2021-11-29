@@ -8,7 +8,7 @@
         <option>Metal</option>
     </select>
     <button @click="reset">
-        Reset search
+        Reset search genre
     </button>
 </div>
 </template>
@@ -41,5 +41,6 @@ button {
     margin-left: 20px;
     background-color: purple;
     color: #fff;
+    margin-bottom: 10px;
 }
 </style>

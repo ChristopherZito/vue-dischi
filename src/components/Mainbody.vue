@@ -2,6 +2,7 @@
 <section>
     <div id="ricerca">
         <Search @genere="searchType"/>
+        <SearchArtist :artisti="albums" @authors="searchAuthors"/>
     </div>
     <div id="container">
         <div id="load" v-if="loading === false">
@@ -19,16 +20,19 @@
 import axios from "axios"
 import Album from '@/components/Album.vue'
 import Search from '@/components/search.vue'
+import SearchArtist from '@/components/SearchArtist.vue'
 
 export default {
     name: 'Mainbody',
     components: {
         Album,
-        Search
+        Search,
+        SearchArtist
 },
 data(){
     return {
         searchText:"",
+        searchName:"",
         loading: false,
         albums: [],
         urlDisk:"https://flynn.boolean.careers/exercises/api/array/music",
@@ -39,18 +43,26 @@ created() {
 },
 computed:{
     newAlbum() {
-        if(this.searchText == ""){
+        if(this.searchText == "" && this.searchName == ""){
             return this.albums;
         }
         return this.albums.filter((tipo) => {
             return tipo.genre.toLowerCase().includes(this.searchText.toLowerCase())
+            /* tipo.author.toLowerCase().includes(this.searchName.toLowerCase()) 
+            Da solo va D;
+            */
+            
         })   
+        
     }
 },
 methods: {
     searchType(style){
         this.searchText = style;
 
+    },
+    searchAuthors(name){
+        this.searchName = name;
     },
     subElement() {
         axios
