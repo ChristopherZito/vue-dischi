@@ -34,6 +34,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+div {
+    display: flex;
+}
 select {
     padding: 10px;
     background-color: purple;

@@ -1,9 +1,5 @@
 <template>
 <section>
-    <div id="ricerca">
-        <Search @genere="searchType"/>
-        <SearchArtist :artisti="albums" @authors="searchAuthors"/>
-    </div>
     <div id="container">
         <div id="load" v-if="loading === false">
             Loading...
@@ -19,56 +15,43 @@
 <script>
 import axios from "axios"
 import Album from '@/components/Album.vue'
-import Search from '@/components/search.vue'
-import SearchArtist from '@/components/SearchArtist.vue'
+
 
 export default {
     name: 'Mainbody',
     components: {
         Album,
-        Search,
-        SearchArtist
 },
 data(){
     return {
-        searchText:"",
-        searchName:"",
         loading: false,
         albums: [],
         urlDisk:"https://flynn.boolean.careers/exercises/api/array/music",
     }
+},
+props: {
+    authorIn: String,
+    albumIn: String,
 },
 created() {
     this.subElement();
 },
 computed:{
     newAlbum() {
-        if(this.searchText == "" && this.searchName == ""){
+        if(this.albumIn == "" && this.authorIn == ""){
             return this.albums;
         }
         return this.albums.filter((tipo) => {
-            if(this.searchText != "" && this.searchName == ""){
-                return tipo.genre.toLowerCase().includes(this.searchText.toLowerCase())
-            }else if (this.searchText == "" && this.searchName != ""){
-                return tipo.author.toLowerCase().includes(this.searchName.toLowerCase())
-            }
-            
-             
-            
-           
-            
+            if(this.albumIn != "" && this.authorIn == ""){
+                return tipo.genre.toLowerCase().includes(this.albumIn.toLowerCase())
+            }else if (this.albumIn == "" && this.authorIn != ""){
+                return tipo.author.toLowerCase().includes(this.authorIn.toLowerCase())
+            }   
         })   
         
     }
 },
 methods: {
-    searchType(style){
-        this.searchText = style;
-
-    },
-    searchAuthors(name){
-        this.searchName = name;
-    },
     subElement() {
         axios
         .get(this.urlDisk)
@@ -77,6 +60,7 @@ methods: {
             /* console.log(this.loading , "&" ,this.albums); */
             this.albums = block.data.response;
             this.loading = true;
+            this.$emit(`datiArr`, this.albums)
             /* console.log(this.loading , "&" ,this.albums); */
         })
     },
@@ -85,11 +69,7 @@ methods: {
 </script>
 
 <style scoped lang="scss">
-#ricerca {
-    width: 60%;
-    margin: auto;
-    padding: 10px;
-}
+
 
 #container {
     width: 60%;
