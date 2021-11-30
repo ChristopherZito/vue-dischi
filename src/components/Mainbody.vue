@@ -47,10 +47,15 @@ computed:{
             return this.albums;
         }
         return this.albums.filter((tipo) => {
-            return tipo.genre.toLowerCase().includes(this.searchText.toLowerCase())
-            /* tipo.author.toLowerCase().includes(this.searchName.toLowerCase()) 
-            Da solo va D;
-            */
+            if(this.searchText != "" && this.searchName == ""){
+                return tipo.genre.toLowerCase().includes(this.searchText.toLowerCase())
+            }else if (this.searchText == "" && this.searchName != ""){
+                return tipo.author.toLowerCase().includes(this.searchName.toLowerCase())
+            }
+            
+             
+            
+           
             
         })   
         
