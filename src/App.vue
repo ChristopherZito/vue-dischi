@@ -3,12 +3,14 @@
   <header>
     <Header
     :inputArr="authorArr"
+    :inpurGenre="inGenre"
     @authorSearched="autorReturn"
     @albumSearched="albumReturn"/>
   </header>
   <main>
     <Mainbody
     @datiArr="selectArr"
+    @albumsArr="genreArr"
     :authorIn="authorBack"
     :albumIn="albumBack"/>
   </main>
@@ -31,11 +33,15 @@ export default {
       authorArr:[],
       authorBack:"",
       albumBack:"",
+      inGenre: [],
     }
   },
   methods: {
     selectArr(outArr){
       this.authorArr = outArr;
+    },
+    genreArr(genre){
+      this.inGenre = genre;
     },
     autorReturn(dato){
       this.authorBack = dato;

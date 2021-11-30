@@ -24,6 +24,7 @@ export default {
 },
 data(){
     return {
+        albumArr: [],
         loading: false,
         albums: [],
         urlDisk:"https://flynn.boolean.careers/exercises/api/array/music",
@@ -61,6 +62,15 @@ methods: {
             this.albums = block.data.response;
             this.loading = true;
             this.$emit(`datiArr`, this.albums)
+
+           block.data.response.filter((alb) => {
+                /* console.log(alb.genre); */
+                if(!this.albumArr.includes(alb.genre)){
+                    /* console.log(alb.genre); */
+                    return this.albumArr.push(alb.genre)
+                }
+                this.$emit(`albumsArr`, this.albumArr)
+            })
             /* console.log(this.loading , "&" ,this.albums); */
         })
     },

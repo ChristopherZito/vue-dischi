@@ -2,10 +2,9 @@
 <div>
     <select v-model="type" @change="$emit(`genere`, type)">
         <option disabled value="">seleziona un genere</option>
-        <option>Rock</option>
-        <option>Pop</option>
-        <option>Jazz</option>
-        <option>Metal</option>
+        <option 
+        v-for="genre, i in generi" :key="i"
+        >{{genre}}</option>
     </select>
     <button @click="reset">
         Reset search genre
@@ -15,18 +14,21 @@
 
 <script>
 export default {
-  name: 'Search',
-  data() {
-      return {
-          type: "",
-      }
-  },
-  methods: {
-      reset() {
-        this.type = "";
-        this.$emit(`genere`, this.type)
-      }
-  }
+    name: 'Search',
+    data() {
+        return {
+            type: "",
+        }
+    },
+    methods: {
+        reset() {
+            this.type = "";
+            this.$emit(`genere`, this.type)
+        }
+    },
+    props: {
+        generi: Array,
+    }
 }
 </script>
 

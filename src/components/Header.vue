@@ -4,7 +4,7 @@
         <i class="fab fa-spotify"></i>
       </div>
       <div id="ricerca">
-        <Search @genere="searchType"/>
+        <Search @genere="searchType" :generi="inpurGenre"/>
         <SearchArtist :artisti="inputArr" @authors="searchAuthors"/>
     </div>
   </div>
@@ -23,6 +23,7 @@ export default {
   },
   props: {
     inputArr: Array,
+    inpurGenre: Array,
   },
   data() {
     return {
